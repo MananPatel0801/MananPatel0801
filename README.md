@@ -1,7 +1,8 @@
 # 👋 Hi, I'm Manan Patel
 A full-stack web developer and computer engineering student with a passion for solving real-world problems using modern tools.
 
-- 🔨 Building: SnipSync, SubTrackr, JobHunter
+- 🔨 Building scalable web apps, deploying them, and seeing them live - in action is what thrives me. 
+-   Integrating backend to databases is what I always find challanging and that's what I'm trying to work on with more upcoming projects.
 - 💼 Looking for: Fall 2025 software internships
 - 🛠️ Tech: React, Node.js, Supabase, MongoDB
 - 🔗 [My LinkedIn](https://www.linkedin.com/in/mananpatel182)
