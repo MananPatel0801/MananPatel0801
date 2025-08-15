@@ -1,708 +1,336 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manan Patel's Portfolio Website</title>
-    
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .profile-img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            font-weight: bold;
-        }
-
-        h1 {
-            color: #2c3e50;
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .subtitle {
-            color: #7f8c8d;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: #667eea;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            padding: 0.5rem;
-            border-radius: 50%;
-            background: rgba(102, 126, 234, 0.1);
-        }
-
-        .social-links a:hover {
-            transform: translateY(-3px);
-            background: #667eea;
-            color: white;
-        }
-
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 1rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #2c3e50;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        nav a:hover, nav a.active {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Section Styling */
-        .section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            display: none;
-        }
-
-        .section.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section h2 {
-            color: #2c3e50;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .section h2::after {
-            content: '';
-            position: absolute;
-            bottom: -0.5rem;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 2px;
-        }
-
-        /* Showcase Grid */
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .showcase-item {
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border-left: 4px solid #667eea;
-        }
-
-        .showcase-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-
-        .showcase-item h3 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .showcase-item p {
-            color: #555;
-            margin-bottom: 0.5rem;
-        }
-
-        .showcase-tag {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            margin: 0.2rem 0.2rem 0 0;
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .project-header {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .project-header h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.6rem 1.2rem;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .project-link:hover {
-            background: #5a67d8;
-            transform: translateY(-2px);
-        }
-
-        .tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-
-        .tech-tag {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(102, 126, 234, 0.2);
-        }
-
-        /* Reflection Styling */
-        .reflection-content {
-            background: rgba(255, 255, 255, 0.7);
-            border-radius: 10px;
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #667eea;
-        }
-
-        .reflection-content h3 {
-            color: #2c3e50;
-            margin-bottom: 1rem;
-        }
-
-        /* LinkedIn Section */
-        .linkedin-embed {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(0, 119, 181, 0.1);
-            border-radius: 10px;
-            margin-top: 1rem;
-        }
-
-        .linkedin-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: #0077b5;
-            color: white;
-            padding: 1rem 2rem;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .linkedin-button:hover {
-            background: #005885;
-            transform: translateY(-2px);
-        }
-
-        /* Personal Section */
-        .personal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .hobby-card {
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 15px;
-            padding: 1.5rem;
-            text-align: center;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .hobby-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .hobby-icon {
-            font-size: 3rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            nav ul {
-                gap: 1rem;
-            }
-
-            .section {
-                padding: 1.5rem;
-            }
-
-            .showcase-grid, .projects-grid, .personal-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manan Patel — Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"/>
+  <meta name="color-scheme" content="dark">
 </head>
-
 <body>
-    <div class="container">
-        <!-- Header Section -->
-        <header>
-            <div class="profile-img">
-                <!-- Replace with your initials or add an actual image -->
-                MP
+  <div class="container">
+    <header class="site-header">
+      <div class="profile-img">MP</div>
+      <h1>Manan Patel</h1>
+      <p class="subtitle">Full‑stack Developer • Computer Engineering @ York University • Building scalable web apps</p>
+      <div class="social-links">
+        <a href="mailto:manan045720@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://linkedin.com/in/mananpatel182" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/MananPatel0801" title="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+    </header>
+
+    <nav class="site-nav">
+      <ul>
+        <li><a href="#showcase" class="nav-link active">Showcase</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#reflection" class="nav-link">Reflection</a></li>
+        <li><a href="#personal" class="nav-link">About</a></li>
+        <li><a href="#experience" class="nav-link">Experience</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Showcase -->
+    <section id="showcase" class="section active">
+      <h2>Communication Showcase</h2>
+      <div class="showcase-grid">
+        <article class="showcase-item">
+          <h3>Technical Report Writing</h3>
+          <span class="showcase-tag">ENG 2003</span>
+          <p><strong>Why:</strong> Mastery of 7 C's and audience‑focused documentation.</p>
+          <p><strong>Growth:</strong> From basic descriptions to structured, multi‑audience reports.</p>
+          <p><strong>Stretch:</strong> Writing concise yet complete content for complex topics.</p>
+        </article>
+
+        <article class="showcase-item">
+          <h3>Assertion–Evidence Presentations</h3>
+          <span class="showcase-tag">ENG 2003</span>
+          <p><strong>Why:</strong> Visual‑first, persuasive communication.</p>
+          <p><strong>Growth:</strong> From bullet slides to engaging, evidence‑backed narrative.</p>
+          <p><strong>Stretch:</strong> Trusting visuals and delivery over text‑heavy slides.</p>
+        </article>
+
+        <article class="showcase-item">
+          <h3>Engineering Argumentation</h3>
+          <span class="showcase-tag">ENG 2003</span>
+          <p><strong>Why:</strong> Logical, evidence‑based proposals.</p>
+          <p><strong>Growth:</strong> Blending ethos, pathos, logos for impact.</p>
+          <p><strong>Stretch:</strong> Addressing counter‑points and limitations.</p>
+        </article>
+
+        <article class="showcase-item">
+          <h3>Algorithm Complexity Docs</h3>
+          <span class="showcase-tag">DSA</span>
+          <p><strong>Why:</strong> Translating Big‑O concepts for peer learning.</p>
+          <p><strong>Growth:</strong> Applying ENG 2003 techniques across courses.</p>
+          <p><strong>Stretch:</strong> Teaching complex ideas clearly.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <h2>My Projects</h2>
+      <div class="projects-grid">
+        <article class="project-card">
+          <div class="project-header">
+            <h3>DevDash – Developer Productivity Dashboard</h3>
+            <p>Modular dashboard for planning sprints, habits, and widgets.</p>
+          </div>
+          <div class="project-content">
+            <p>🎛️ Pluggable widget cards</p>
+            <p>🌙 Theme toggle with persistence</p>
+            <p>🧠 AI‑powered suggestions</p>
+            <p>🧩 Componentized layout</p>
+            <div class="tech-stack">
+              <span class="tech-tag">JavaScript</span>
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Next.js</span>
+              <span class="tech-tag">Tailwind CSS</span>
             </div>
-            <h1>Manan Patel</h1>
-            <p class="subtitle">Computer Engineering Student | York University, Canada | Tech Enthusiast | Passionate about Innovation and Scalable Web Apps</p>
-            <div class="social-links">
-                <a href="mailto:manan045720@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-                <a href="https://linkedin.com/in/mananpatel182" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/MananPatel0801" title="GitHub"><i class="fab fa-github"></i></a>
-                <!--<a href="tel:+1234567890" title="Phone"><i class="fas fa-phone"></i></a>-->
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/MananPatel0801/DevDash"><i class="fab fa-github"></i> Code</a>
+              <a class="project-link" href="https://dev-dash-sable.vercel.app/"><i class="fas fa-external-link-alt"></i> Demo</a>
             </div>
-        </header>
+          </div>
+        </article>
 
-        <!-- Navigation -->
-        <nav>
-            <ul>
-                <li><a href="#showcase" class="nav-link active">Showcase</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#reflection" class="nav-link">Reflection</a></li>
-                <li><a href="#linkedin" class="nav-link">LinkedIn</a></li>
-                <li><a href="#personal" class="nav-link">Personal</a></li>
-            </ul>
-        </nav>
-
-        <!-- Showcase Section -->
-        <section id="showcase" class="section active">
-            <h2>Communication Showcase</h2>
-            <div class="showcase-grid">
-                <div class="showcase-item">
-                    <h3>Technical Report Writing</h3>
-                    <span class="showcase-tag">ENG 2003</span>
-                    <p><strong>Why selected:</strong> Demonstrates mastery of the 7 C's and audience-focused technical documentation.</p>
-                    <p><strong>Development:</strong> Evolved from basic technical descriptions to comprehensive, structured reports for diverse audiences.</p>
-                    <p><strong>Comfort zone:</strong> Challenged me to write concisely while maintaining completeness, especially for complex algorithms.</p>
-                </div>
-
-                <div class="showcase-item">
-                    <h3>Assertion-Evidence Presentations</h3>
-                    <span class="showcase-tag">ENG 2003</span>
-                    <p><strong>Why selected:</strong> Revolutionized my presentation skills with visual-driven communication approach.</p>
-                    <p><strong>Development:</strong> Transformed from bullet-point presentations to engaging, visually-supported technical communication.</p>
-                    <p><strong>Comfort zone:</strong> Moving away from text-heavy slides required trusting visual design and verbal explanation skills.</p>
-                </div>
-
-                <div class="showcase-item">
-                    <h3>Engineering Argumentation</h3>
-                    <span class="showcase-tag">ENG 2003</span>
-                    <p><strong>Why selected:</strong> Shows ability to build logical, evidence-based arguments using structured frameworks.</p>
-                    <p><strong>Development:</strong> Learned to integrate ethos, pathos, and logos for persuasive technical communication.</p>
-                    <p><strong>Comfort zone:</strong> Addressing opposing viewpoints and acknowledging solution limitations was initially challenging.</p>
-                </div>
-
-                <div class="showcase-item">
-                    <h3>Algorithm Complexity Documentation</h3>
-                    <span class="showcase-tag">DSA Course</span>
-                    <p><strong>Why selected:</strong> Applied ENG 2003 principles to create educational content explaining Big O notation to peers.</p>
-                    <p><strong>Development:</strong> Demonstrated cross-course application of communication frameworks for technical education.</p>
-                    <p><strong>Comfort zone:</strong> Teaching complex concepts pushed me beyond typical student role to educator perspective.</p>
-                </div>
+        <article class="project-card">
+          <div class="project-header">
+            <h3>SubTrackr – Subscription Expense Tracker</h3>
+            <p>Track subscriptions and visualize monthly spend.</p>
+          </div>
+          <div class="project-content">
+            <p>➕ Manage all subscriptions</p>
+            <p>📊 Charts for spend</p>
+            <p>🔍 Filters by type/price/frequency</p>
+            <div class="tech-stack">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Next.js 14</span>
+              <span class="tech-tag">Tailwind CSS</span>
+              <span class="tech-tag">Vercel</span>
             </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="section">
-            <h2>My Projects</h2>
-            <div class="projects-grid">
-                <!-- Sample Project Cards - Customize these -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>DevDash – Developer Productivity Dashboard</h3>
-                        <p>DevDash is a sleek, modular developer dashboard that helps you centralize your productivity tools in one place. Whether you're planning your sprint, tracking your habits, or customizing widgets — DevDash is designed to simplify your workflow.</p>
-                    </div>
-                    <div class="project-content">
-                        <p>🎛️ Dashboard interface with pluggable widget cards</p>
-                        <p>🌙 Dark/light theme toggle with persistent preference</p>
-                        <p>🧠 AI-powered smart suggestions for productivity tools</p>
-                        <p>🧩 Fully componentized layout for custom widget building</p>
-                        <p>🧠 AI modules for dynamic enhancements (e.g. GPT, HuggingFace integration ready)</p>
-                      
-                        <div class="tech-stack">
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">HTML5 Canvas</span>
-                            <span class="tech-tag">Tailwind CSS</span>
-                            <span class="tech-tag">React.js</span>
-                            <span class="tech-tag">Next.js</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/MananPatel0801/DevDash" class="project-link">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                            <a href="https://dev-dash-sable.vercel.app/" class="project-link">
-                                <i class="fas fa-external-link-alt"></i> Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>💸 SubTrackr – Subscription Expense Tracker</h3>
-                        <p>SubTrackr is a modern web app that helps you track all your digital subscriptions in one place. Get a visual breakdown of monthly spending, manage recurring payments, and stay on top of upcoming charges — all with a clean, AI-augmented dashboard experience.</p>
-                    </div>
-                    <div class="project-content">
-                        <p>➕ Add and manage all your digital subscriptions</p>
-                        <p>📊 Visualize monthly spend with charts</p>
-                        <p>🔍 Filter subscriptions by type, price, or frequency</p>
-                        <p>📈 AI-ready modules for future analytics & smart suggestions</p>
-                        <p>📱 Responsive, clean dashboard layout with dynamic components</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">React.js</span>
-                            <span class="tech-tag">Next.js 14 (App Router)</span>
-                            <span class="tech-tag">HTML & Tailwind CSS</span>
-                            <span class="tech-tag">Vercel Deployment</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/MananPatel0801/SubTrackr" class="project-link">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                            <a href="https://sub-trackr-ten.vercel.app/" class="project-link">
-                                <i class="fas fa-play"></i> Video Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>🧠 SkillSprint – Personalized Learning Path Generator</h3>
-                        <p>SkillSprint is a responsive web application that allows users to generate a 6-week personalized learning roadmap based on a target job role (e.g., “Full Stack Developer”, “UI/UX Designer”, “Cloud Engineer”, etc). It uses AI to suggest modules and resources tailored to the selected role, making it easier for users to upskill effectively.</p>
-                    </div>
-                    <div class="project-content">
-                        <p>🔍 Input any job role or goal and instantly get a 6-week plan</p>
-                        <p>✅ Interactive checkmarks for completed tasks</p>
-                        <p>🔄 Dropdown list of popular tech career paths</p>
-                        <p>📬 (Planned) Weekly progress email reminders</p>
-                        <p>🧠 AI-powered roadmap generation using GenAI (can be extended with OpenAI or HuggingFace APIs)</p>
-                      
-                        <div class="tech-stack">
-                            <span class="tech-tag">React.js</span>
-                            <span class="tech-tag">Next.js 14</span>
-                            <span class="tech-tag">HTML & Tailwind CSS</span>
-                            <span class="tech-tag">Local AI flow generation (extendable with GeminiAI or HuggingFace)</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/MananPatel0801/SkillSprint" class="project-link">
-                                <i class="fab fa-github"></i> Code
-                            </a>
-                            <a href="https://skill-sprint-xi.vercel.app/" class="project-link">
-                                <i class="fas fa-chart-line"></i> Analysis
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3>🎯 GoalSync – Visual Goal Planner & Progress Tracker</h3>
-                            <p>GoalSync is a minimalist, AI-augmented web application designed to help individuals break down career or learning goals into manageable objectives and track their progress using a Kanban-style board. It's ideal for self-learners, productivity hackers, and anyone who prefers visual goal planning.</p>
-                        </div>
-                        <div class="project-content">
-                            <p>📝 Input your main goal (e.g., “Become a Full-Stack Developer”)</p>
-                            <p>🧩 Automatically generated sub-goals/objectives using AI logic </p>
-                            <p>🗂️ Organize tasks across Kanban columns: To Do, In Progress, Completed</p>
-                            <p>✅ Mark objectives as complete and track progress in real-time</p>
-                            <p>📂 View completed goals on a separate summary page</p>
-                            <p>📦 Component-based modular design (easily extendable)</p>
-                          
-                            <div class="tech-stack">
-                                <span class="tech-tag">React.js</span>
-                                <span class="tech-tag">Next.js 14</span>
-                                <span class="tech-tag">HTML & Tailwind CSS</span>
-                                <span class="tech-tag">Local generation logic using custom TypeScript modules</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/MananPatel0801/GoalSync" class="project-link">
-                                    <i class="fab fa-github"></i> Code
-                                </a>
-                                <a href="https://goal-sync.vercel.app/" class="project-link">
-                                    <i class="fas fa-chart-line"></i> Analysis
-                                </a>
-                            </div>
-                    </div>
-
-                </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/MananPatel0801/SubTrackr"><i class="fab fa-github"></i> Code</a>
+              <a class="project-link" href="https://sub-trackr-ten.vercel.app/"><i class="fas fa-play"></i> Demo</a>
             </div>
-        </section>
+          </div>
+        </article>
 
-        <!-- Reflection Section -->
-        <section id="reflection" class="section">
-            <h2>Professional Reflection</h2>
-            
-            <div class="reflection-content">
-                <h3>Course Experience (ENG 2003)</h3>
-                <p>My experience in ENG 2003 exceeded expectations by connecting communication directly to engineering practice. The systematic approach to technical writing and assertion-evidence presentations has already improved my work in other courses. The 7 C's framework and audience analysis fundamentally changed how I approach any communication task.</p>
-                <p>The most valuable content was learning to structure technical reports and create engaging presentations. The engineering argumentation module, particularly the integration of ethos, pathos, and logos, helped me understand why some technical proposals succeed while others fail.</p>
+        <article class="project-card">
+          <div class="project-header">
+            <h3>SkillSprint – 6‑Week Learning Paths</h3>
+            <p>Generate personalized upskilling roadmaps for target roles.</p>
+          </div>
+          <div class="project-content">
+            <p>🔍 Role‑based plan</p>
+            <p>✅ Track completion</p>
+            <p>🧠 Local AI flow (extensible)</p>
+            <div class="tech-stack">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Next.js 14</span>
+              <span class="tech-tag">Tailwind CSS</span>
             </div>
-
-            <div class="reflection-content">
-                <h3>Communication Development</h3>
-                <p>Before this course, my technical communication was competent but limited in scope. I could explain concepts to fellow students but struggled with non-technical audiences. Now I approach communication as a core engineering competency deserving systematic attention.</p>
-                <p>My greatest improvement was in presentation skills through the assertion-evidence method. My technical writing also became more purposeful and audience-focused. However, I still need to work on adapting communication styles for different cultural contexts and improving collaborative discussion facilitation.</p>
-                <p>This course will significantly impact my remaining studies and future practice. I now view communication as integral to technical work, not separate from it. These skills will be essential for team collaboration, stakeholder communication, and career advancement in engineering.</p>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/MananPatel0801/SkillSprint"><i class="fab fa-github"></i> Code</a>
+              <a class="project-link" href="https://skill-sprint-xi.vercel.app/"><i class="fas fa-external-link-alt"></i> Demo</a>
             </div>
-        </section>
+          </div>
+        </article>
 
-        <!-- LinkedIn Section -->
-        <section id="linkedin" class="section">
-            <h2>Professional Profile</h2>
-            <div class="linkedin-embed">
-                <h3>Connect with me on LinkedIn</h3>
-                <p>View my complete professional profile, including detailed experience, skills, and endorsements.</p>
-                <a href="https://linkedin.com/in/mananpatel182" class="linkedin-button">
-                    <i class="fab fa-linkedin"></i>
-                    View LinkedIn Profile
-                </a>
+        <article class="project-card">
+          <div class="project-header">
+            <h3>GoalSync – Visual Goal Planner</h3>
+            <p>Break down goals and track progress Kanban‑style.</p>
+          </div>
+          <div class="project-content">
+            <p>🧩 Auto sub‑goals</p>
+            <p>🗂️ Kanban columns</p>
+            <p>📦 Modular components</p>
+            <div class="tech-stack">
+              <span class="tech-tag">React</span>
+              <span class="tech-tag">Next.js 14</span>
+              <span class="tech-tag">Tailwind CSS</span>
             </div>
-            
-            <div style="margin-top: 2rem; background: rgba(255,255,255,0.8); padding: 2rem; border-radius: 10px;">
-                <h3>Professional Summary</h3>
-                <p><strong>Headline:</strong> Computer Engineering Student | Problem Solver | Tech Enthusiast</p>
-                <p><strong>Summary:</strong> Passionate computer engineering student with strong technical communication skills and experience in software development, IoT systems, and machine learning. Demonstrated ability to translate complex technical concepts for diverse audiences through coursework and project work.</p>
-                
-                <h4 style="margin-top: 1.5rem;">Key Skills:</h4>
-                <div class="tech-stack" style="margin-top: 0.5rem;">
-                    <span class="tech-tag">Technical Communication</span>
-                    <span class="tech-tag">Software Development</span>
-                    <span class="tech-tag">Data Structures & Algorithms</span>
-                    <span class="tech-tag">Python Programming</span>
-                    <span class="tech-tag">Project Management</span>
-                    <span class="tech-tag">Team Collaboration</span>
-                    <span class="tech-tag">Problem Solving</span>
-                </div>
+            <div class="project-links">
+              <a class="project-link" href="https://github.com/MananPatel0801/GoalSync"><i class="fab fa-github"></i> Code</a>
+              <a class="project-link" href="https://goal-sync.vercel.app/"><i class="fas fa-external-link-alt"></i> Demo</a>
             </div>
-        </section>
+          </div>
+        </article>
+      </div>
+    </section>
 
-        <!-- Personal Section -->
-        <section id="personal" class="section">
-            <h2> About Me</h2>
-                <div class="personal-grid">
-                    <p>
-                        I’m a Computer Engineering student at York University with hands-on experience in full-stack development, specializing in building real-world web applications using the MERN stack and Supabase. My journey began with a deep interest in web development, which led me to complete an Associate’s Degree at Mohawk College and further evolve through internships, freelance projects, and self-driven learning.
-                    </p>
-                    <p>
-                        I’ve worked on building feature-rich apps, including a steel fabrication estimation platform and an AI-powered code snippet manager—both focused on solving practical problems for real users. My stack includes React, Node.js, Express, MongoDB, Supabase, and tools like Tailwind CSS, Vite, and GitHub for modern front-end workflows and backend efficiency.
-                    </p>
-                    <p>
-                        I continuously sharpen my skills through platforms like LeetCode and HackerRank, and I’m actively exploring opportunities to grow in collaborative, impact-driven environments like Scotiabank’s Velocity Internship program.
-                    </p>
-                </div>
-            <h2>Beyond Engineering</h2>
-            <div class="personal-grid">
-                <div class="hobby-card">
-                    <div class="hobby-icon">
-                        <i class="fas fa-gamepad"></i>
-                    </div>
-                    <h3>Game Development</h3>
-                    <p>Creating indie games in my spare time has improved my project management skills and creative problem-solving abilities. Working within technical constraints while maintaining user experience parallels engineering design challenges.</p>
-                </div>
+    <!-- Reflection -->
+    <section id="reflection" class="section">
+      <h2>Professional Reflection</h2>
+      <div class="reflection-content">
+        <h3>Course Experience (ENG 2003)</h3>
+        <p>Communication translated directly into engineering practice. The 7 C's and assertion‑evidence method improved my work across courses and projects.</p>
+      </div>
+      <div class="reflection-content">
+        <h3>Communication Development</h3>
+        <p>Shifted from competent to audience‑centric. Biggest leap: presentations via assertion‑evidence; ongoing work: adapting for diverse contexts.</p>
+      </div>
+    </section>
 
-                <div class="hobby-card">
-                    <div class="hobby-icon">
-                        <i class="fas fa-mountain"></i>
-                    </div>
-                    <h3>Hiking & Photography</h3>
-                    <p>Outdoor activities help maintain work-life balance and provide perspective on complex problems. Photography has enhanced my attention to detail and visual communication skills used in technical presentations.</p>
-                    <p>
-                        When I’m not coding, I enjoy breaking down complex tech for others, staying up to date with the latest trends, and optimizing user experiences through performance-first design.
-                    </p>
-                </div>
+    
+<!-- About -->
+<section id="personal" class="section">
+  <h2>About Me & Beyond Work</h2>
+  <div class="personal-grid">
+    <p>I’m a Computer Engineering student at York University with hands-on experience in full-stack development. I build real-world apps using React, Node, Supabase and the broader JS ecosystem.</p>
+    <p>Projects include a steel estimation platform and AI-assisted tools focused on practical value. I enjoy simplifying complex tech for others and performance-first design.</p>
+    <p>Actively refining problem-solving through LeetCode/HackerRank and seeking collaborative, impact-oriented roles.</p>
+  </div>
 
-                <div class="hobby-card">
-                    <div class="hobby-icon">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h3>Mentoring & Tutoring</h3>
-                    <p>Tutoring junior students in mathematics and programming has strengthened my ability to explain complex concepts clearly and adapt communication styles to different learning approaches.</p>
-                </div>
-            </div>
-        </section>
+  <!-- LinkedIn Skills -->
+  <div class="linkedin-embed">
+    <p>For a full list of skills and endorsements, check my LinkedIn.</p>
+    <div class="tech-stack" style="justify-content:center; margin-bottom:12px">
+      <span class="tech-tag">Full-stack Development</span>
+      <span class="tech-tag">Problem-solving</span>
+      <span class="tech-tag">Communication</span>
+      <span class="tech-tag">Teamwork</span>
+      <span class="tech-tag">Customer Service</span>
+      <span class="tech-tag">Time Management</span>
+      <span class="tech-tag">Adaptability</span>
     </div>
+    <a class="linkedin-button" href="https://linkedin.com/in/mananpatel182" target="_blank">
+      <i class="fab fa-linkedin"></i> View LinkedIn
+    </a>
+  </div>
 
-    <script>
-        // Navigation functionality
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                // Remove active class from all links and sections
-                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-                
-                // Add active class to clicked link
-                this.classList.add('active');
-                
-                // Show corresponding section
-                const targetId = this.getAttribute('href').substring(1);
-                document.getElementById(targetId).classList.add('active');
-            });
-        });
+  <!-- Hobbies & Interests -->
+  <div style="margin-top:24px">
+    <h3 style="text-align:center; margin-bottom:14px; color:var(--text-0)">Hobbies & Interests</h3>
+    <div class="showcase-grid">
+      <article class="showcase-item">
+        <i class="fas fa-book" style="font-size:1.5rem; color:var(--accent)"></i>
+        <h3>Reading</h3>
+        <p>Enjoy reading self-help and personal finance books, and occasionally novels. Builds <strong>lifelong learning</strong> and <strong>analytical thinking</strong> skills.</p>
+      </article>
+      <article class="showcase-item">
+        <i class="fas fa-table-tennis" style="font-size:1.5rem; color:var(--accent)"></i>
+        <h3>Sports</h3>
+        <p>Love playing cricket, tennis, and pickleball. Enhances <strong>teamwork</strong>, <strong>discipline</strong>, and <strong>strategic thinking</strong>.</p>
+      </article>
+      <article class="showcase-item">
+        <i class="fas fa-laptop-code" style="font-size:1.5rem; color:var(--accent)"></i>
+        <h3>Tech Trends</h3>
+        <p>Stay up-to-date with technology by following enthusiasts like MKBHD. Demonstrates <strong>curiosity</strong> and <strong>adaptability</strong>.</p>
+      </article>
+      <article class="showcase-item">
+        <i class="fas fa-newspaper" style="font-size:1.5rem; color:var(--accent)"></i>
+        <h3>Newsletters</h3>
+        <p>Read newsletters to keep up with the tech and AI industry. Strengthens <strong>research</strong> and <strong>information synthesis</strong> abilities.</p>
+      </article>
+    </div>
+  </div>
+</section>
 
-        // Smooth animations for project cards
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
 
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+    <!-- Experience -->
+<section id="experience" class="section">
+  <h2>Professional Experience</h2>
+  <div class="projects-grid">
+    <article class="project-card">
+      <div class="project-header">
+        <h3>Geek Squad — In-Store Service Agent</h3>
+        <p>Best Buy Canada · Permanent Part-time · Etobicoke, ON · Jan 2023 – Present</p>
+      </div>
+      <div class="project-content">
+        <ul>
+          <li>Deliver positive, timely service during check-in/checkout; manage service queues and provide accurate status updates.</li>
+          <li>Diagnose tech issues via structured questioning; document notes and next-step time estimates.</li>
+          <li>Set up and repair customer devices; collaborate effectively with fellow agents.</li>
+        </ul>
+        <div class="tech-stack"><span class="tech-tag">CRM</span><span class="tech-tag">Customer Satisfaction</span><span class="tech-tag">Troubleshooting</span></div>
+      </div>
+    </article>
 
-        // Observe all project cards and showcase items
-        document.querySelectorAll('.project-card, .showcase-item').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'all 0.6s ease';
-            observer.observe(card);
-        });
-    </script>
+    <article class="project-card">
+      <div class="project-header">
+        <h3>Freelance Full-stack Developer</h3>
+        <p>Falco Steel Fabricators Inc. · Contract · Remote · Feb 2025 – Apr 2025</p>
+      </div>
+      <div class="project-content">
+        <ul>
+          <li>Designed & deployed a scalable steel estimating app (React, Node, Supabase, Tailwind), reducing manual quoting time by ~70%.</li>
+          <li>Built dynamic quoting forms with real-time sync, automated PDF/Excel exports, and version control for consistent delivery.</li>
+        </ul>
+        <div class="tech-stack"><span class="tech-tag">React</span><span class="tech-tag">Node</span><span class="tech-tag">Supabase</span><span class="tech-tag">Tailwind</span></div>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-header">
+        <h3>Full-stack Web Developer</h3>
+        <p>Webnixon Creative Studio · Contract · Remote · Jan 2023 – Aug 2023</p>
+      </div>
+      <div class="project-content">
+        <ul>
+          <li>Improved client apps, contributing to ~25% performance gains through optimized code and component reuse.</li>
+          <li>Implemented REST APIs and responsive UIs, boosting engagement by ~30% across 3 projects.</li>
+          <li>Resolved 50+ bugs/requests in Agile workflow, increasing delivery speed ~20%.</li>
+        </ul>
+        <div class="tech-stack"><span class="tech-tag">JavaScript</span><span class="tech-tag">Node.js</span><span class="tech-tag">React</span></div>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-header">
+        <h3>Web Developer</h3>
+        <p>Universal Technologies · Contract · Remote · Feb 2022 – Dec 2022</p>
+      </div>
+      <div class="project-content">
+        <ul>
+          <li>Led front-end development, ensuring code consistency across teams.</li>
+          <li>Collaborated with backend, PMs, and stakeholders to align tech decisions with user/business needs.</li>
+        </ul>
+        <div class="tech-stack"><span class="tech-tag">Java</span><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span></div>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-header">
+        <h3>Retail Store Manager</h3>
+        <p>Petro-Canada & Tim Hortons · Full-time · Hamilton, ON · Jun 2020 – Dec 2021</p>
+      </div>
+      <div class="project-content">
+        <ul>
+          <li>Managed store operations, leading teams and maintaining service standards.</li>
+        </ul>
+        <div class="tech-stack"><span class="tech-tag">Leadership</span><span class="tech-tag">Operations</span><span class="tech-tag">Customer Service</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <div class="personal-grid">
+    <p>Feel free to reach out via email or connect on LinkedIn.</p>
+    <div class="social-links" style="justify-content:flex-start">
+      <a href="mailto:manan045720@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://linkedin.com/in/mananpatel182" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/MananPatel0801" title="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">© {year} Manan Patel. All rights reserved.</footer>
+
+  </div>
+
+  <script>document.currentScript.previousElementSibling.innerHTML = document.currentScript.previousElementSibling.innerHTML.replace("{year}", new Date().getFullYear());</script>
+  <script src="script.js"></script>
 </body>
 </html>
